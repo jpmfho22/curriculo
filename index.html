@@ -14,10 +14,13 @@
         <div class="container">
             <h1>João Pedro Magrin</h1>
             <p>Engenheiro da Computação | Desenvolvedor Full Stack</p>
+            <button id="toggle-tema" aria-label="Alternar tema">
+                <i class="fas fa-moon"></i> Mudar Tema
+            </button>
         </div>
     </header>
 
-    <main class="container">
+    <main class="container fade">
         <section class="perfil">
             <div class="foto">
                 <img src="foto.jpg" alt="Foto de João Pedro Magrin">
@@ -37,7 +40,7 @@
                 <a href="https://lattes.cnpq.br/1067202364701148" target="_blank" class="btn-social lattes">
                     <i class="fas fa-graduation-cap"></i> Lattes
                 </a>
-                <a href="https://github.com/jpmfho22" target="_blank" class="btn-social github">
+                <a href="https://github.com/joaopedromagrin" target="_blank" class="btn-social github">
                     <i class="fab fa-github"></i> GitHub
                 </a>
                 <a href="https://www.instagram.com/jao_magrin/" target="_blank" class="btn-social instagram">
@@ -64,15 +67,12 @@
             <h2>Experiência Profissional</h2>
             <ul>
                 <li><strong>C CAMARGO & CIA LTDA (Supermercados Camargo)</strong></li>
-                <li><strong>|</strong></li>
-                <li><strong>TI</strong></li>
-                <li>jan de 2023 - o momento</li>
-                <li><strong>|</strong></li>
-                <li><strong>Auxiliar Administrativo</strong></li>
-                <li>jun de 2022 - jan de 2023</li>
-                <li><strong>|</strong></li>
-                <li><strong>Empacotador</strong></li>
-                <li>dez de 2021 - jun de 2022</li>
+                <li><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analista de Suporte e Infraestrutura de TI</strong></li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jan de 2023 - o momento</li>
+                <li><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Auxiliar Administrativo</strong></li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jun de 2022 - jan de 2023</li>
+                <li><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Empacotador</strong></li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dez de 2021 - jun de 2022</li>
             </ul>
         </section>
 
@@ -95,11 +95,35 @@
                 <li><strong>Inglês:</strong> Nível Intermediário</li>
             </ul>
         </section>
+    </main>
 
     <footer>
         <p>&copy; 2025 João Pedro Magrin | Todos os direitos reservados.</p>
     </footer>
 
+    <script>
+        const botaoTema = document.getElementById('toggle-tema');
+        const icone = botaoTema.querySelector('i');
+        const main = document.querySelector('main');
+
+        // Verifica tema salvo
+        const temaSalvo = localStorage.getItem('tema');
+        if (temaSalvo === 'claro') {
+            document.body.classList.add('claro');
+            icone.classList = 'fas fa-sun';
+        }
+
+        botaoTema.addEventListener('click', () => {
+            document.body.classList.toggle('claro');
+            main.classList.add('fade');
+
+            const modoClaro = document.body.classList.contains('claro');
+            icone.classList = modoClaro ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('tema', modoClaro ? 'claro' : 'escuro');
+
+            setTimeout(() => main.classList.remove('fade'), 500);
+        });
+    </script>
+
 </body>
 </html>
-
